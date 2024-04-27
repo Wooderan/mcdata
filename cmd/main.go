@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/Wooderan/mcdata"
 	"github.com/akamensky/argparse"
-	"github.com/wlwanpan/mcdata"
 )
 
 func main() {

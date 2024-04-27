@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	EditionPC = "PC"
-	EditionPE = "PE"
+	EditionPC = "pc"
+	EditionPE = "bedrock"
 
 	SubmoduleDataPath = "minecraft-data/data"
 )
@@ -22,15 +22,15 @@ var (
 type dataPath map[string]map[string]string
 
 type dataPaths struct {
-	PC dataPath `json:"pc"`
-	PE dataPath `json:"pe"`
+	PC      dataPath `json:"pc"`
+	Bedrock dataPath `json:"bedrock"`
 }
 
 func (dp *dataPaths) getEditionedPath(e string) dataPath {
 	if e == EditionPC {
 		return dp.PC
 	}
-	return dp.PE
+	return dp.Bedrock
 }
 
 func (dp *dataPaths) getVersionedPaths(e, v string) (map[string]string, bool) {

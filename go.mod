@@ -1,4 +1,4 @@
-module github.com/wlwanpan/mcdata
+module github.com/Wooderan/mcdata
 
 go 1.16
 
