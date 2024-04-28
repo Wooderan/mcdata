@@ -8,7 +8,7 @@ Note: go 1.16 is required since this package relies on the [go embeded](https://
 ## Usage
 
 ```bash
-go run cmd/main.go gen --edition PC --version 1.8 --output out/entities
+go run generator/main.go gen --edition PC --version 1.8 --output out/entities
 ```
 
 Note: the generated package name will be the output dir name. For example, running the above command will generate a package `"entities"` with the following files:
