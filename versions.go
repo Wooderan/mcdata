@@ -4,19 +4,20 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
 	"path/filepath"
 
 	"github.com/Wooderan/mcdata/generated/types"
 )
 
-func GetAvailableVersions(platform string) ([]string, error) {
-	isAvailable := IsAvailablePlatform(platform)
+func GetAvailableVersions(MCDataPath string, platform string) ([]string, error) {
+	isAvailable := IsAvailablePlatform(MCDataPath, platform)
 	if !isAvailable {
 		return nil, errors.New(fmt.Sprintf("there is no such platform like %s\n", platform))
 	}
 
-	versionsJsonPath := filepath.Join(SubmodulePath, "data", platform, "common", "versions.json")
-	versionsBytes, err := embeddedMinecraftData.ReadFile(versionsJsonPath)
+	versionsJsonPath := filepath.Join(MCDataPath, "data", platform, "common", "versions.json")
+	versionsBytes, err := os.ReadFile(versionsJsonPath)
 	if err != nil {
 		return nil, err
 	}
@@ -28,14 +29,14 @@ func GetAvailableVersions(platform string) ([]string, error) {
 	return versions, nil
 }
 
-func GetAvailableProtocolVersions(platform string) ([]types.Version, error) {
-	isAvailable := IsAvailablePlatform(platform)
+func GetAvailableProtocolVersions(MCDataPath string, platform string) ([]types.Version, error) {
+	isAvailable := IsAvailablePlatform(MCDataPath, platform)
 	if !isAvailable {
 		return nil, errors.New(fmt.Sprintf("there is no such platform like %s\n", platform))
 	}
 
-	versionsJsonPath := filepath.Join(SubmodulePath, "data", platform, "common", "protocolVersions.json")
-	versionsBytes, err := embeddedMinecraftData.ReadFile(versionsJsonPath)
+	versionsJsonPath := filepath.Join(MCDataPath, "data", platform, "common", "protocolVersions.json")
+	versionsBytes, err := os.ReadFile(versionsJsonPath)
 	if err != nil {
 		return nil, err
 	}

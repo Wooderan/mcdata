@@ -1,13 +1,14 @@
 package mcdata
 
 import (
+	"os"
 	"path/filepath"
 )
 
-func GetAvailablePlatforms() ([]string, error) {
-	dataPath := filepath.Join(SubmodulePath, "data")
+func GetAvailablePlatforms(MCDataPath string) ([]string, error) {
+	dataPath := filepath.Join(MCDataPath, "data")
 
-	dataSubItems, err := embeddedMinecraftData.ReadDir(dataPath)
+	dataSubItems, err := os.ReadDir(dataPath)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +23,8 @@ func GetAvailablePlatforms() ([]string, error) {
 	return availablePlatforms, nil
 }
 
-func IsAvailablePlatform(platform string) bool {
-	availablePlatforms, err := GetAvailablePlatforms()
+func IsAvailablePlatform(MCDataPath string, platform string) bool {
+	availablePlatforms, err := GetAvailablePlatforms(MCDataPath)
 	if err != nil {
 		return false
 	}

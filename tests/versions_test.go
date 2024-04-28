@@ -28,7 +28,7 @@ var (
 
 func TestAvailableVersions(t *testing.T) {
 	for _, platform := range expectedPlatforms {
-		versions, err := mcdata.GetAvailableVersions(platform)
+		versions, err := mcdata.GetAvailableVersions(MCDataPath, platform)
 		if err != nil {
 			t.Errorf("GetAvailableVersions() error = %v", err)
 			return
@@ -42,7 +42,7 @@ func TestAvailableVersions(t *testing.T) {
 
 func TestAvailableProtocolVersions(t *testing.T) {
 	for _, platform := range expectedPlatforms {
-		protocolVersions, err := mcdata.GetAvailableProtocolVersions(platform)
+		protocolVersions, err := mcdata.GetAvailableProtocolVersions(MCDataPath, platform)
 		if err != nil {
 			t.Errorf("GetAvailableProtocolVersions() error = %v", err)
 			return

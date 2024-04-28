@@ -11,7 +11,7 @@ var (
 )
 
 func TestAvailablePlatforms(t *testing.T) {
-	platforms, err := mcdata.GetAvailablePlatforms()
+	platforms, err := mcdata.GetAvailablePlatforms(MCDataPath)
 	if err != nil {
 		t.Errorf("GetAvailablePlatforms() error = %v", err)
 		return
