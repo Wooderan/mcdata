@@ -53,3 +53,16 @@ func TestAvailableProtocolVersions(t *testing.T) {
 		}
 	}
 }
+
+func TestGetLatestProtocolVersion(t *testing.T) {
+	for _, platform := range expectedPlatforms {
+		latestVersion := platformVersionsMap[platform][len(platformVersionsMap[platform])-1]
+		protocolVersion, err := mcdata.GetProtocolVersion(MCDataPath, platform, latestVersion)
+		if err != nil {
+			t.Errorf("GetProtocolVersion() error = %v", err)
+		}
+		if protocolVersion == nil {
+			t.Errorf("GetProtocolVersion() returned nil, expected non-nil value")
+		}
+	}
+}

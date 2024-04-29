@@ -47,3 +47,17 @@ func GetAvailableProtocolVersions(MCDataPath string, platform string) ([]types.V
 	}
 	return versions, nil
 }
+
+func GetProtocolVersion(MCDataPath string, platform string, version string) (*types.Version, error) {
+	availableProtocolVersions, err := GetAvailableProtocolVersions(MCDataPath, platform)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, protocolVersion := range availableProtocolVersions {
+		if *protocolVersion.MinecraftVersion == version {
+			return &protocolVersion, nil
+		}
+	}
+	return nil, errors.New(fmt.Sprintf("there is no protocol version for %s\n", version))
+}
